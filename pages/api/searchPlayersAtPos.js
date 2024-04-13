@@ -10,10 +10,10 @@ export default async function handle(req, res) {
 
   const resultPlayers = await prisma.players.findMany({
     where: {
-      firstName: {
+      firstname: {
         startsWith: first
       },
-      lastName:{
+      lastname:{
         startsWith: last
       },
       position:pos,
