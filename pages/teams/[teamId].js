@@ -47,8 +47,10 @@ import InfoTooltip from '../../components/InfoTooltip';
 //this function gathers the data from the player given in the path
 export async function getServerSideProps(context) {
     const { params } = context;
-    const teamId = parseFloat(params.teamid);
-    //const teamId = parseInt(params.teamid);
+    //const teamId = parseFloat(params.teamid);
+    console.log(params.teamId)
+    console.log(params.team_id)
+    const teamId = parseInt(params.teamId);
 
     const prisma = new PrismaClient()
 
