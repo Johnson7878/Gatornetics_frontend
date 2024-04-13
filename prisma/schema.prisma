@@ -11,36 +11,33 @@ datasource db {
 model players {
   id           Int              @id
   team_id      Int?
-  firstname    text
-  lastname     text
-  team         text
+  firstname    String
+  lastname     String
+  team         String
   year         Int
-  position     text
-  jerseynumber text
+  position     String
+  jerseynumber String
   height       Int?
   weight       Int?
-  homecity     text
-  homestate    text
+  homecity     String
+  homestate    String
   posstat1     Json?
   posstat2     Json?
-  conference   text
-  imglinx      text
+  conference   String
+  imglinx      String
   isreturning  Int?
   regposstat1  Json?
   regposstat2  Json?
 
-  @@index([team_id], map: "teamID")
-  @@fulltext([firstName])
-  @@fulltext([firstName, lastName])
-  @@fulltext([lastName])
+  
 }
 
 model teams {
   id                       Int     @id
-  school                   text
-  conference               text
-  color                    text
-  division                 text
+  school                   String
+  conference               String
+  color                    String
+  division                 String
   wins                     Int?
   expecwins                Float?
   recrank                  Int?
@@ -55,8 +52,8 @@ model teams {
   awayw                    Int?
   awayl                    Int?
   playerids                Json?
-  abbr                     text
-  imglinx                  text
+  abbr                     String
+  imglinx                  String
   offplayct                Int?
   offdrivect               Int?
   offppa                   Float?
@@ -157,5 +154,5 @@ model teams {
   defrushplaysuccrt_perc   Int?
   defpassplaysuccrt_perc   Int?
 
-  @@fulltext([school])
+  
 }
