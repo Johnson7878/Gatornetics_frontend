@@ -40,7 +40,7 @@ ChartJS.register(
 //this function gathers the data from the player given in the path
 export async function getServerSideProps(context) {
     const { params } = context;
-    const playerId = parseInt(params.playerId);
+    const playerId = parseInt(params.playerid);
 
     const prisma = new PrismaClient()
 
@@ -62,11 +62,11 @@ export async function getServerSideProps(context) {
         },
         select: {
             id:true,
-            firstName:true,
-            lastName:true,
+            firstname:true,
+            lastname:true,
         }
     })
-    playerTeam.sort((a, b) => (a.lastName > b.lastName ? 1 : -1));
+    playerTeam.sort((a, b) => (a.lastname > b.lastname ? 1 : -1));
 
 
     return {
@@ -104,15 +104,15 @@ const PlayerDetails = ({ playerData, teamData, playerTeam }) => {
     const avgStat2P  = [168.4144, 311.7368,  426.5723,  560.6842,  678.9934,  797.1644,  896.0986, 1009.0000, 1102.1447, 1221.6447, 1322.4342, 1418.7894, 1479.3684];
     const avgStat2CB = [0.2968, 0.7656, 1.1406, 1.6015, 1.9843, 2.3281, 2.5546,2.9140, 3.1953, 3.5859, 4.1015, 4.5000, 4.4296];
 
-    const playerPosStat1 = playerData.posStat1[0].replace('[', '').replace(']', '').split(', ');
+    const playerPosStat1 = playerData.posstat1[0].replace('[', '').replace(']', '').split(', ');
     const playerGraphStat1 = playerPosStat1?.map(Number);
-    const playerPosStat2 = playerData.posStat2[0].replace('[', '').replace(']', '').split(', ');
+    const playerPosStat2 = playerData.posstat2[0].replace('[', '').replace(']', '').split(', ');
     const playerGraphStat2 = playerPosStat2.map(Number);
 
-    const playerPosStat1Pred = playerData.regPosStat1 != null ?  playerData.regPosStat1[0].replace('[', '').replace(']', '').split(', ') : null;
-    const playerGraphStat1Pred = playerData.regPosStat1 != null ? playerPosStat1Pred.map(Number) : console.log('bad data');
-    const playerPosStat2Pred = playerData.regPosStat2 != null ? playerData.regPosStat2[0].replace('[', '').replace(']', '').split(', ') : null;
-    const playerGraphStat2Pred = playerData.regPosStat1 != null ? playerPosStat2Pred.map(Number) : console.log('bad data');
+    const playerPosStat1Pred = playerData.regposstat1 != null ?  playerData.regposstat1[0].replace('[', '').replace(']', '').split(', ') : null;
+    const playerGraphStat1Pred = playerData.regposstat1 != null ? playerPosStat1Pred.map(Number) : console.log('bad data');
+    const playerPosStat2Pred = playerData.regposstat2 != null ? playerData.regposstat2[0].replace('[', '').replace(']', '').split(', ') : null;
+    const playerGraphStat2Pred = playerData.regposstat1 != null ? playerPosStat2Pred.map(Number) : console.log('bad data');
 
     const labels = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10', 'Week 11', 'Week 12'];
 
@@ -124,79 +124,79 @@ const PlayerDetails = ({ playerData, teamData, playerTeam }) => {
     switch(playerData.position){
         case "RB": 
             label1Value = "Rushing Yards";
-            title1Value = playerData.firstName + " " + playerData.lastName + "- Weekly Rushing Yards";
+            title1Value = playerData.firstname + " " + playerData.lastname + "- Weekly Rushing Yards";
             playerPosStat1Avg = avgStat1RB;
             playerPosStat2Avg = avgStat2RB;
             break;
         case "QB":
             label1Value = "Passing Yards";
-            title1Value = playerData.firstName + " " + playerData.lastName + "- Weekly Passing Yards";
+            title1Value = playerData.firstname + " " + playerData.lastname + "- Weekly Passing Yards";
             playerPosStat1Avg = avgStat1QB;
             playerPosStat2Avg = avgStat2QB;
             break;
         case "LB":
             label1Value = "Solo Tackles";
-            title1Value = playerData.firstName + " " + playerData.lastName + "- Weekly Solo Tackles";
+            title1Value = playerData.firstname + " " + playerData.lastname + "- Weekly Solo Tackles";
             playerPosStat1Avg = avgStat1LB;
             playerPosStat2Avg = avgStat2LB;
             break;
         case "DL":
             label1Value = "Solo Tackles";
-            title1Value = playerData.firstName + " " + playerData.lastName + "- Weekly Solo Tackles";
+            title1Value = playerData.firstname + " " + playerData.lastname + "- Weekly Solo Tackles";
             playerPosStat1Avg = avgStat1DL;
             playerPosStat2Avg = avgStat2DL;
             break;
         case "DB":
             label1Value = "Solo Tackles";
-            title1Value = playerData.firstName + " " + playerData.lastName + "- Weekly Solo Tackles";
+            title1Value = playerData.firstname + " " + playerData.lastname + "- Weekly Solo Tackles";
             playerPosStat1Avg = avgStat1DB;
             playerPosStat2Avg = avgStat2DB;
             break;
         case "PK":
             label1Value = "Field Goal Percentage";
-            title1Value = playerData.firstName + " " + playerData.lastName + "- Field Goal Percentage";
+            title1Value = playerData.firstname + " " + playerData.lastname + "- Field Goal Percentage";
             playerPosStat1Avg = avgStat1PK;
             playerPosStat2Avg = avgStat2PK;
             break;
         case "S":
             label1Value = "Solo Tackles";
-            title1Value = playerData.firstName + " " + playerData.lastName + "- Weekly Solo Tackles";
+            title1Value = playerData.firstname + " " + playerData.lastname + "- Weekly Solo Tackles";
             playerPosStat1Avg = avgStat1S;
             playerPosStat2Avg = avgStat2S;
             break;
         case "WR":
             label1Value = "Receiving Yards";
-            title1Value = playerData.firstName + " " + playerData.lastName + "- Weekly Receiving Yards";
+            title1Value = playerData.firstname + " " + playerData.lastname + "- Weekly Receiving Yards";
             playerPosStat1Avg = avgStat1WR;
             playerPosStat2Avg = avgStat2WR;
             break;
         case "TE":
             label1Value = "Receiving Yards";
-            title1Value = playerData.firstName + " " + playerData.lastName + "- Weekly Receiving Yards";
+            title1Value = playerData.firstname + " " + playerData.lastname + "- Weekly Receiving Yards";
             playerPosStat1Avg = avgStat1TE;
             playerPosStat2Avg = avgStat2TE;
             break;
         case "DE":
             label1Value = "Solo Tackles";
-            title1Value = playerData.firstName + " " + playerData.lastName + "- Weekly Solo Tackles";
+            title1Value = playerData.firstname + " " + playerData.lastname + "- Weekly Solo Tackles";
             playerPosStat1Avg = avgStat1DE;
             playerPosStat2Avg = avgStat2DE;
             break;
         case "DT":
             label1Value = "Solo Tackles";
-            title1Value = playerData.firstName + " " + playerData.lastName + "- Weekly Solo Tackles";
+            title1Value = playerData.firstname + " " + playerData.lastname + "- Weekly Solo Tackles";
             playerPosStat1Avg = avgStat1DT;
             playerPosStat2Avg = avgStat2DT;
             break;
         case "P":
             label1Value = "Yards Per Point";
-            title1Value = playerData.firstName + " " + playerData.lastName + "- Weekly Yards Per Point";
+            title1Value = playerData.firstname + " " + playerData.lastname + "- Weekly Yards Per Point";
             playerPosStat1Avg = avgStat1P;
             playerPosStat2Avg = avgStat2P;
             break;
         case "CB":
             label1Value = "Interceptions";
-            title1Value = playerData.firstName + " " + playerData.lastName + "- Weekly Interceptions";
+            title1Value = playerData.firstname + " " + playerData.lastname + "- Weekly Interceptions";
             playerPosStat1Avg = avgStat1CB;
             playerPosStat2Avg = avgStat2CB;
             break;
@@ -208,63 +208,63 @@ const PlayerDetails = ({ playerData, teamData, playerTeam }) => {
     switch(playerData.position){
         case "RB": 
             label2Value = "Rushing Touchdowns";
-            title2Value = playerData.firstName + " " + playerData.lastName + "- Weekly Rushing TouchDowns";
+            title2Value = playerData.firstname + " " + playerData.lastname + "- Weekly Rushing TouchDowns";
             break;
         case "QB":
             label2Value = "Passing Touchdowns";
-            title2Value = playerData.firstName + " " + playerData.lastName + "- Weekly Passing TouchDowns";
+            title2Value = playerData.firstname + " " + playerData.lastname + "- Weekly Passing TouchDowns";
             break;
         case "LB":
             label2Value = "Total Tackles";
-            title2Value = playerData.firstName + " " + playerData.lastName + "- Total Tackles";
+            title2Value = playerData.firstname + " " + playerData.lastname + "- Total Tackles";
             break;
         case "DL":
             label2Value = "Total Tackles";
-            title2Value = playerData.firstName + " " + playerData.lastName + "- Total Tackles";
+            title2Value = playerData.firstname + " " + playerData.lastname + "- Total Tackles";
             break;
         case "DB":
             label2Value = "Total Tackles";
-            title2Value = playerData.firstName + " " + playerData.lastName + "- Total Tackles";
+            title2Value = playerData.firstname + " " + playerData.lastname + "- Total Tackles";
             break;
         case "PK":
             label2Value = "Points From Kicks";
-            title2Value = playerData.firstName + " " + playerData.lastName + "- Total Points From Kicks";
+            title2Value = playerData.firstname + " " + playerData.lastname + "- Total Points From Kicks";
             break;
         case "S":
             label2Value = "Total Tackles";
-            title2Value = playerData.firstName + " " + playerData.lastName + "- Total Tackles";
+            title2Value = playerData.firstname + " " + playerData.lastname + "- Total Tackles";
             break;
         case "WR":
             label2Value = "Receiving Touchdowns";
-            title2Value = playerData.firstName + " " + playerData.lastName + "- Weekly Receiving Touchdowns";
+            title2Value = playerData.firstname + " " + playerData.lastname + "- Weekly Receiving Touchdowns";
             break;
         case "TE":
             label2Value = "Receptions";
-            title2Value = playerData.firstName + " " + playerData.lastName + "- Weekly Receptions";
+            title2Value = playerData.firstname + " " + playerData.lastname + "- Weekly Receptions";
             break;
         case "DE":
             label2Value = "Sacks";
-            title2Value = playerData.firstName + " " + playerData.lastName + "- Weekly Sacks";
+            title2Value = playerData.firstname + " " + playerData.lastname + "- Weekly Sacks";
             break;
         case "DT":
             label2Value = "Total Tackles";
-            title2Value = playerData.firstName + " " + playerData.lastName + "- Total Tackles";
+            title2Value = playerData.firstname + " " + playerData.lastname + "- Total Tackles";
             break;
         case "P":
             label2Value = "Punting Yards";
-            title2Value = playerData.firstName + " " + playerData.lastName + "- Weekly Punting Yards";
+            title2Value = playerData.firstname + " " + playerData.lastname + "- Weekly Punting Yards";
             break;
         case "CB":
             label2Value = "Passes Defended";
-            title2Value = playerData.firstName + " " + playerData.lastName + "- Weekly Passes Defended";
+            title2Value = playerData.firstname + " " + playerData.lastname + "- Weekly Passes Defended";
             break;
     }
 
     let label1ValueAvg = label1Value + " Average";
     let label2ValueAvg = label2Value + " Average";
 
-    let label1ValuePred = playerData.regPosStat1 != null ? "2023 " + label1Value + " Predicted" : "No Predicted Data";
-    let label2ValuePred = playerData.regPosStat1 != null ? "2023 " + label2Value + " Predicted" : "No Predicted Data";
+    let label1ValuePred = playerData.regposstat1 != null ? "2023 " + label1Value + " Predicted" : "No Predicted Data";
+    let label2ValuePred = playerData.regposstat1 != null ? "2023 " + label2Value + " Predicted" : "No Predicted Data";
 
     const playerGraphData1 = {
         labels,
@@ -366,12 +366,12 @@ const PlayerDetails = ({ playerData, teamData, playerTeam }) => {
         <Layout>
             <div>
                 <div className="flex flex-wrap justify-center mt-5">
-                    <Image alt='player-image' src={playerData.imgLinx} height={254} width={350} priority/>
+                    <Image alt='player-image' src={playerData.imglinx} height={254} width={350} priority/>
                     <div className="flex flex-col mx-20 justify-right">
                         <div className="mt-16 m-auto flex flex-col items-left text-white text-s">
                             <div className="flex items-end">
                                 <h3 className="text-xl">Name:</h3>
-                                <h3 className="text-2xl ml-5 sm:ml-10"><b>{playerData.firstName} {playerData.lastName}</b></h3>
+                                <h3 className="text-2xl ml-5 sm:ml-10"><b>{playerData.firstname} {playerData.lastname}</b></h3>
                             </div>
                             <div className="flex items-end">
                                 <h3 className="text-xl">Height:</h3>

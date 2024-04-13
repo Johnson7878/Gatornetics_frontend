@@ -47,7 +47,7 @@ import InfoTooltip from '../../components/InfoTooltip';
 //this function gathers the data from the player given in the path
 export async function getServerSideProps(context) {
     const { params } = context;
-    const teamId = parseInt(params.teamId);
+    const teamId = parseInt(params.teamid);
 
     const prisma = new PrismaClient()
 
@@ -72,11 +72,11 @@ export async function getServerSideProps(context) {
         },
         select: {
             id:true,
-            firstName:true,
-            lastName:true,
+            firstname:true,
+            lastname:true,
         }
     })
-    allPlayers.sort((a, b) => (a.lastName > b.lastName ? 1 : -1));
+    allPlayers.sort((a, b) => (a.lastname > b.lastname ? 1 : -1));
 
     return {
         props: { teamData, divisionTeamData, allPlayers }
@@ -119,12 +119,12 @@ const TeamDetails = ({ teamData, divisionTeamData, allPlayers }) => {
     };
 
     const defdataArray = [];
-    defdataArray.push(teamData.defPassPlaySuccRT_perc);
-    defdataArray.push(teamData.defPwrSucc_perc);
-    defdataArray.push(teamData.defExpl_perc);
-    defdataArray.push(teamData.defRushPlaySuccRT_perc);
-    defdataArray.push(teamData.defLineYDSTOT_perc);
-    defdataArray.push(teamData.defTOTPPA_perc);
+    defdataArray.push(teamData.defpassplaysuccrt_perc);
+    defdataArray.push(teamData.defpwrsucc_perc);
+    defdataArray.push(teamData.defexpl_perc);
+    defdataArray.push(teamData.defrushplaysuccrt_perc);
+    defdataArray.push(teamData.deflineydstot_perc);
+    defdataArray.push(teamData.deftotppa_perc);
 
     const defradarData = {
         labels: ['Def. Pass Play Succ. Rate', 'Def. Power Succ. Rate', 'Def. Explosiveness', 'Def. Rush Play Succ. Rate', 'Def. Line Yards Gained', 'Def. Total PPA'],
@@ -172,12 +172,12 @@ const TeamDetails = ({ teamData, divisionTeamData, allPlayers }) => {
     };
 
     const dataArray = [];
-    dataArray.push(teamData.offtotalPPA_perc);
-    dataArray.push(teamData.offsuccRate_perc);
+    dataArray.push(teamData.offtotalppa_perc);
+    dataArray.push(teamData.offsuccrate_perc);
     dataArray.push(teamData.offexpl_perc);
-    dataArray.push(teamData.offpwrSucc_perc);
-    dataArray.push(teamData.offlineYdsTOT_perc);
-    dataArray.push(teamData.offTotOpp_perc);
+    dataArray.push(teamData.offpwrsucc_perc);
+    dataArray.push(teamData.offlineydstot_perc);
+    dataArray.push(teamData.offtotopp_perc);
 
     const radarData = {
         labels: ['Off. Total PPA', 'Off. Success Rate', 'Off. Explosiveness', 'Off. Power Succ. Rate', 'Off. Line Yards Gained', 'Off. Points Per Opportunity'],
@@ -234,7 +234,7 @@ const TeamDetails = ({ teamData, divisionTeamData, allPlayers }) => {
 
     const talentScores = [];
     divisionTeamData.forEach(team => {
-        talentScores.push(team.talentScore);
+        talentScores.push(team.talentscore);
     });
 
     //create background colors
@@ -268,7 +268,7 @@ const TeamDetails = ({ teamData, divisionTeamData, allPlayers }) => {
         <Layout>
             <div>
                 <div className="flex flex-wrap justify-center mt-5">
-                    <Image className={"flex h-200 mx-20 rounded-lg"} src={teamData.imgLinx} width="400" height="400" priority />
+                    <Image className={"flex h-200 mx-20 rounded-lg"} src={teamData.imglinx} width="400" height="400" priority />
                     <div className="flex flex-col mx-20 justify-right">
                         <div className="m-auto flex flex-col items-left text-white text-s">
                             <div className="flex items-end">
@@ -285,21 +285,21 @@ const TeamDetails = ({ teamData, divisionTeamData, allPlayers }) => {
                             </div>
                             <div className="flex items-end">
                                 <h3 className="text-xl">Expected Wins: </h3>
-                                <h3 className="text-2xl ml-3"><b>{teamData.expecWins}</b></h3>
+                                <h3 className="text-2xl ml-3"><b>{teamData.expecwins}</b></h3>
                                 <div className='my-auto'><InfoTooltip info={expectedWinsInfo}/></div>
                             </div>
                             <div className="flex items-end">
                                 <h3 className="text-xl">Recruiting Rank: </h3>
-                                <h3 className="text-2xl ml-3"><b>{teamData.recRank}</b></h3>
+                                <h3 className="text-2xl ml-3"><b>{teamData.recrank}</b></h3>
                             </div>
                             <div className="flex items-end">
                                 <h3 className="text-xl">Overall Offensive Score: </h3>
-                                <h3 className="text-2xl ml-3"><b>{teamData.overOff}</b></h3>
+                                <h3 className="text-2xl ml-3"><b>{teamData.overoff}</b></h3>
                                 <div className='my-auto'><InfoTooltip info={overallOffInfo}/></div>
                             </div>
                             <div className="flex items-end">
                                 <h3 className="text-xl">Overall Defensive Score: </h3>
-                                <h3 className="text-2xl ml-3"><b>{teamData.overDeff}</b></h3>
+                                <h3 className="text-2xl ml-3"><b>{teamData.overdeff}</b></h3>
                                 <div className='my-auto'><InfoTooltip info={overallDefInfo}/></div>
                             </div>
                             <div className="flex items-end"><PlayersDropdown teamArray={allPlayers} title="Players"></PlayersDropdown></div>
