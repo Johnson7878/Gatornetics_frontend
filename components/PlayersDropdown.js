@@ -8,7 +8,7 @@ export default function PlayersDropdown({ teamArray, title }) {
 
     const filteredPlayers = 
         query == '' ? teamArray : teamArray.filter((player) => {
-            return (player.firstName.toLowerCase() + " " + player.lastName.toLowerCase()).includes(query.toLowerCase())
+            return (player.firstname.toLowerCase() + " " + player.lastname.toLowerCase()).includes(query.toLowerCase())
         })
 
     const handleChange = (e) => {
@@ -37,7 +37,7 @@ export default function PlayersDropdown({ teamArray, title }) {
                     filteredPlayers.map((player) => (
                     <Combobox.Option key={player.id} value={player}>
                         <Link href={'/players/' + player.id.toString()}>
-                            <div className='m-1 w-64 px-4 py-1 rounded-md ui-active:bg-gray-500 ui-active:cursor-pointer'>{player.firstName} {player.lastName}</div>
+                            <div className='m-1 w-64 px-4 py-1 rounded-md ui-active:bg-gray-500 ui-active:cursor-pointer'>{player.firstname} {player.lastname}</div>
                         </Link>
                     </Combobox.Option>
                 )))}

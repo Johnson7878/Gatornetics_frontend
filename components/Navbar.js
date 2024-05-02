@@ -87,13 +87,23 @@ export default function NavBar({teams}) {
     }
 
     async function searchTeams(query) {
-        const apiRoute = '/api/searchTeams?queryString=' + query;
-        let returnData;
-        await fetch(apiRoute, {
-            method: 'GET',
-        }).then((response) => response.json()).then((data) => returnData = data);
-        // console.log(returnData);
-        return returnData;
+        // Sanitize the query to prevent SQL injection
+        const sanitizedQuery = encodeURIComponent(query);
+        const apiRoute = `/api/searchTeams?queryString=${sanitizedQuery}`;
+        try {
+            const response = await fetch(apiRoute, {
+                method: 'GET',
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error:', error);
+            // Handle errors appropriately (e.g., show error message to the user)
+            throw new Error('Failed to fetch data');
+        }
     }
 
     return (
@@ -143,7 +153,7 @@ export default function NavBar({teams}) {
                     </div>
                 </div>
                 <form onSubmit={makeSearch} className="m-auto flex items-center justify-center w-10/12 mt-auto md:w-1/2">
-                    <label htmlFor="simple-search" className="sr-only">Search</label>
+                    <label htmlFor="simple-search" className="sr-only">Search (Case Sensitive)</label>
                     <Listbox value={selectedSearchOption} onChange={setSearchOption} className="mr-4">
                         <div className="relative">
                         <Listbox.Button className="ml-4 relative w-30 cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
@@ -198,15 +208,15 @@ export default function NavBar({teams}) {
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                             <svg aria-hidden="true" className="w-5 h-5 text-gray-800 dark:text-gray-800" fillRule="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
                         </div>
-                        <input onInput={handleSearch} autoComplete={"off"} type="text" id="simple-search" className=" bg-white border border-gray-800 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" value={searchInput}/>
+                        <input onInput={handleSearch} autoComplete={"off"} type="text" id="simple-search" className=" bg-white border border-gray-800 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search ( Case Sensitive )" value={searchInput}/>
                         <div onFocus={expand} onClick={select} className="absolute h-auto w-full rounded-md bg-white z-10">
                             {selectedSearchOption.id == 1 && expanded &&
                                 queryItems.map((item, index) => (
                                     <Link href={"/players/" + item.id} key={index} className="flex p-4 rounded-lg my-1">
                                         <div className="flex p-3 font-bold hover:bg-gray-400 hover:cursor-pointer hover:scale-[1.02] transition-all">
                                             <div className="ml-8"/>
-                                            <Image className="ml-20" quality={100} alt='player image' placeholder={UserIcon} src={item.imgLinx} height={50} width={70} priority/>
-                                            <div className="my-auto ml-8">{item.firstName} {item.lastName}</div>
+                                            <Image className="ml-20" quality={100} alt='player image' placeholder={UserIcon} src={item.imglinx} height={50} width={70} priority/>
+                                            <div className="my-auto ml-8">{item.firstname} {item.lastname}</div>
                                         </div>
                                     </Link>
                                 ))
@@ -216,7 +226,7 @@ export default function NavBar({teams}) {
                                     <Link href={"/teams/" + item.id} key={index} className="p-4 rounded-lg my-1">
                                         <div className="flex p-3 font-bold hover:bg-gray-400 hover:cursor-pointer">
                                             <div className="ml-8"/>
-                                            <Image quality={100} alt='team-image' placeholder={UserGroupIcon} src={item.imgLinx} height={50} width={70} priority/> 
+                                            <Image quality={100} alt='team-image' placeholder={UserGroupIcon} src={item.imglinx} height={50} width={70} priority/> 
                                             <div className="my-auto ml-8">{item.school}</div>
                                         </div>
                                     </Link>

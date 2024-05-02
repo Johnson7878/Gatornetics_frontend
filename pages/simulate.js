@@ -18,12 +18,12 @@ export async function getServerSideProps(context) {
           color:true,
           wins:true,
           losses:true,
-          expecWins:true,
-          recRank:true,
-          talentScore:true,
-          overOff:true,
-          overDeff:true,
-          imgLinx:true,
+          expecwins:true,
+          recrank:true,
+          talentscore:true,
+          overoff:true,
+          overdeff:true,
+          imglinx:true,
       },
   })
   teamsList.sort((a, b) => (a.school > b.school ? 1 : -1));

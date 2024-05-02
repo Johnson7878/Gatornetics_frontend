@@ -25,7 +25,7 @@ function Footer() {
         <Link href="/">
           <span className="hover:underline cursor-pointer">Gatornetics</span>
         </Link>
-        . All Rights Reserved
+        . All Rights Reserved. Site Maintained by Cole Johnson.
       </div>
     </footer>
   );

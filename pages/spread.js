@@ -301,9 +301,9 @@ export default function Signup({teams}) {
                     </div>
                 </Listbox>
                 </div>
-                <div className='flex content-center items-center w-full'>
+                {/* <div className='flex content-center items-center w-full'>
                     <button className='mt-10 mx-auto h-20 w-40 text-2xl text-black hover:text-white bg-white hover:bg-gray-500 transition-all rounded-3xl' onClick={getSimulationData}>SIMULATE!</button>
-                </div>
+                </div> */}
             </div>
             <div className='text-white flex my-10'>
                 <h1 className='mx-auto text-3xl'>RESULTS:</h1>
@@ -317,7 +317,7 @@ export default function Signup({teams}) {
             }
             {!response && 
                 <div className='text-white flex my-2'>
-                    <h1 className='mx-auto text-xl'>Press Simulate to Generate Results!</h1>
+                    <h1 className='mx-auto text-xl'>We're sorry but this model has been deprecated as of 2024. See FAQ for more Information.</h1>
                 </div>
             }
             <div className="h-40"/>

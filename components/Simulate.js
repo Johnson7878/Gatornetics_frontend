@@ -54,7 +54,7 @@ function Simulate({ team1, team2, setStep, yardsToGo, defenseScore, offenseScore
             <div className="flex justify-center items-center w-[calc(100%/3)] p-8">
               <div className="flex flex-col items-center team--home">
                 <div className="w-[100px] h-[100px] flex items-center justify-center bg-[color:var(--color-bg-primary)] shadow-[0_4px_4px_0_rgba(#303030,0.15),0_0_0_15px_var(--color-bg-secondary)] rounded-[50%]">
-                  <img src={team1.imgLinx} />
+                  <img src={team1.imglinx} />
                 </div>
                 <h2 className="text-center text-xl font-semibold mt-6">
                   {team1.school}
@@ -88,7 +88,7 @@ function Simulate({ team1, team2, setStep, yardsToGo, defenseScore, offenseScore
             <div className="flex justify-center items-center w-[calc(100%/3)] p-8">
               <div className="flex flex-col items-center">
                 <div className="w-[100px] h-[100px] flex items-center justify-center rounded-[50%]">
-                  <img src={team2.imgLinx} />
+                  <img src={team2.imglinx} />
                 </div>
                 <h2 className="text-center text-xl font-semibold mt-6">
                   {team2.school}

@@ -29,7 +29,7 @@ model players {
   regposstat1  Json?
   regposstat2  Json?
 
-  
+  @@index([team], name: "team_search_idx")
 }
 
 model teams {
@@ -154,5 +154,5 @@ model teams {
   defrushplaysuccrt_perc   Int?
   defpassplaysuccrt_perc   Int?
 
-  
+  @@index([school], name: "school_search_idx")
 }

@@ -7,6 +7,34 @@ export default function Faq() {
     <Layout>
       <div className='text-center text-xl sm:text-2xl font-bold text-white my-4'>Got a question? We have answers</div>
       <div className='p-1 mx-10 sm:mx-25 md:mx-40 lg:mx-60 my-2 rounded-xl bg-gray-300'>
+
+      <Disclosure as='div' className="flex flex-col p-1">
+          <Disclosure.Button as='div' className="flex justify-center py-2 rounded-lg bg-gray-400">
+            <div className='ml-5 mr-auto pr-4 text-left text-gray-900 overflow-hidden'>
+              Is Gatornetics still alive?
+            </div>
+            <div className='min-w-[25px] my-auto mr-5'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg></div>
+          </Disclosure.Button>
+          <Disclosure.Panel className="mx-5 py-2 bg-inherit text-gray-600">
+            Following graduation from UF, the developers behind Gatornetics have moved onto other projects and thus are no longer working on updates.
+          </Disclosure.Panel>
+        </Disclosure>
+
+        <Disclosure as='div' className="flex flex-col p-1">
+          <Disclosure.Button as='div' className="flex justify-center py-2 rounded-lg bg-gray-400">
+            <div className='ml-5 mr-auto pr-4 text-left text-gray-900 overflow-hidden'>
+              What has changed now that Gatornetics is at EOL?
+            </div>
+            <div className='min-w-[25px] my-auto mr-5'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg></div>
+          </Disclosure.Button>
+          <Disclosure.Panel className="mx-5 py-2 bg-inherit text-gray-600">
+            I, Cole Johnson, have migrated the project's database onto CockroachDB / PostgreSQL and have updated the back-end architecture to account for this change (as well as redeployed on Vercel). One difference you may notice is the deprecation of the Spread Predictor model. Though the Simulate model still works, there is no guarentee for performance as the model may be deprecated at a later time.
+          </Disclosure.Panel>
+        </Disclosure>
         
         <Disclosure as='div' className="flex flex-col p-1">
           <Disclosure.Button as='div' className="flex justify-center py-2 rounded-lg bg-gray-400">
@@ -22,21 +50,6 @@ export default function Faq() {
           </Disclosure.Panel>
         </Disclosure>
 
-        <Disclosure as='div' className="flex flex-col p-1">
-          <Disclosure.Button as='div' className="flex justify-center py-2 rounded-lg bg-gray-400">
-            <div className='ml-5 mr-auto pr-4 text-left text-gray-900 overflow-hidden'>
-              Why should I create an account?
-            </div>
-            <div className='min-w-[25px] my-auto mr-5'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-            </svg></div>
-          </Disclosure.Button>
-          <Disclosure.Panel className="mx-5 py-2 bg-inherit text-gray-600">
-            Account creation will come with several benefits in the future. For example, a Gatornetics user might want
-            to upload their own data to run in our machine learning models. Without an account, this data would be 
-            lost after leaving Gatornetics and the user would have to reupload it every time. 
-          </Disclosure.Panel>
-        </Disclosure>
 
         <Disclosure as='div' className="flex flex-col p-1">
           <Disclosure.Button as='div' className="flex justify-center py-2 rounded-lg bg-gray-400">

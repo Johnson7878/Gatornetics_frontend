@@ -40,10 +40,11 @@ ChartJS.register(
 //this function gathers the data from the player given in the path
 export async function getServerSideProps(context) {
     const { params } = context;
-    const playerId = parseInt(params.playerid);
+    console.log(context)
+    const playerId = parseInt(params.playerId);
 
     const prisma = new PrismaClient()
-
+    
     const playerData = await prisma.players.findFirst({
         where: {
             id: playerId,
@@ -361,6 +362,7 @@ const PlayerDetails = ({ playerData, teamData, playerTeam }) => {
             },
         },
     };
+
 
     return (
         <Layout>

@@ -57,12 +57,12 @@ export async function getServerSideProps(context) {
             color:true,
             wins:true,
             losses:true,
-            expecWins:true,
-            recRank:true,
-            talentScore:true,
-            overOff:true,
-            overDeff:true,
-            imgLinx:true,
+            expecwins:true,
+            recrank:true,
+            talentscore:true,
+            overoff:true,
+            overdeff:true,
+            imglinx:true,
         },
     })
     teamsList.sort((a, b) => (a.school > b.school ? 1 : -1));
@@ -251,27 +251,27 @@ export default function Compare( { teamsList } ) {
     let graphData2;
     if ((playerSel1 != null) && (playerSel2 != null)) {
         // player 1
-        player1PosStat1 = playerSel1.posStat1[0].replace('[', '').replace(']', '').split(', ');
+        player1PosStat1 = playerSel1.posstat1[0].replace('[', '').replace(']', '').split(', ');
         player1GraphStat1 = player1PosStat1.map(Number);
-        player1PosStat2 = playerSel1.posStat2[0].replace('[', '').replace(']', '').split(', ');
+        player1PosStat2 = playerSel1.posstat2[0].replace('[', '').replace(']', '').split(', ');
         player1GraphStat2 = player1PosStat2.map(Number);
         // player 2
-        player2PosStat1 = playerSel2.posStat1[0].replace('[', '').replace(']', '').split(', ');
+        player2PosStat1 = playerSel2.posstat1[0].replace('[', '').replace(']', '').split(', ');
         player2GraphStat1 = player2PosStat1.map(Number);
-        player2PosStat2 = playerSel2.posStat2[0].replace('[', '').replace(']', '').split(', ');
+        player2PosStat2 = playerSel2.posstat2[0].replace('[', '').replace(']', '').split(', ');
         player2GraphStat2 = player2PosStat2.map(Number);
 
         graphData1 = {
             labels,
             datasets: [
                 {
-                    label: playerSel1.firstName + " " + playerSel1.lastName,
+                    label: playerSel1.firstname + " " + playerSel1.lastname,
                     data: player1GraphStat1,
                     borderColor: 'rgb(121, 121, 121)',
                     backgroundColor: 'rgb(121, 121, 121)',
                 },
                 {
-                    label: playerSel2.firstName + " " + playerSel2.lastName,
+                    label: playerSel2.firstname + " " + playerSel2.lastname,
                     data: player2GraphStat1,
                     borderColor: 'rgb(255, 255, 255)',
                     backgroundColor: 'rgb(255, 255, 255)',
@@ -283,13 +283,13 @@ export default function Compare( { teamsList } ) {
             labels,
             datasets: [
                 {
-                    label: playerSel1.firstName + " " + playerSel1.lastName,
+                    label: playerSel1.firstname + " " + playerSel1.lastname,
                     data: player1GraphStat2,
                     borderColor: 'rgb(121, 121, 121)',
                     backgroundColor: 'rgb(121, 121, 121)',
                 },
                 {
-                    label: playerSel2.firstName + " " + playerSel2.lastName,
+                    label: playerSel2.firstname + " " + playerSel2.lastname,
                     data: player2GraphStat2,
                     borderColor: 'rgb(255, 255, 255)',
                     backgroundColor: 'rgb(255, 255, 255)',
@@ -396,8 +396,8 @@ export default function Compare( { teamsList } ) {
                                 <div className='flex flex-row justify-around py-4'>
                                     <div className='flex flex-col justify-center'>
                                         
-                                        <Image className='object-scale-down' alt='player-image' src={playerSel1.imgLinx} height={254} width={350} priority/>
-                                        <div className='self-center pt-2 text-4xl font-bold text-white'>{playerSel1.firstName} {playerSel1.lastName}</div>
+                                        <Image className='object-scale-down' alt='player-image' src={playerSel1.imglinx} height={254} width={350} priority/>
+                                        <div className='self-center pt-2 text-4xl font-bold text-white'>{playerSel1.firstname} {playerSel1.lastname}</div>
                                         <div className='self-center pt-2 text-4xl font-bold text-white'>{playerSel1.team}</div>
                                         <div className='self-center mt-2'>
                                             <Combobox as='div' className='flex justify-center text-white text-lg'>
@@ -415,7 +415,7 @@ export default function Compare( { teamsList } ) {
                                                     ) : (
                                                         queryItems1.map((player) => (
                                                             <Combobox.Option as='div' key={player.id} value={player} >
-                                                                <div onClick={() => setPlayerSel1(player)} className='m-1 w-64 px-4 py-1 rounded-md ui-active:bg-gray-500 ui-active:cursor-pointer'>{player.firstName} {player.lastName}</div>
+                                                                <div onClick={() => setPlayerSel1(player)} className='m-1 w-64 px-4 py-1 rounded-md ui-active:bg-gray-500 ui-active:cursor-pointer'>{player.firstname} {player.lastname}</div>
                                                             </Combobox.Option>
                                                         ))
                                                     )}
@@ -427,8 +427,8 @@ export default function Compare( { teamsList } ) {
                                         <div className='self-end pb-8 text-5xl font-bold text-white'>VS</div>
                                     </div>
                                     <div className='flex flex-col'>
-                                        <Image className='object-scale-down' alt='player-image' src={playerSel2.imgLinx} height={254} width={350} priority/>
-                                        <div className='self-center pt-2 text-4xl font-bold text-white'>{playerSel2.firstName} {playerSel2.lastName}</div>
+                                        <Image className='object-scale-down' alt='player-image' src={playerSel2.imglinx} height={254} width={350} priority/>
+                                        <div className='self-center pt-2 text-4xl font-bold text-white'>{playerSel2.firstname} {playerSel2.lastname}</div>
                                         <div className='self-center pt-2 text-4xl font-bold text-white'>{playerSel2.team}</div>
                                         <div className='self-center mt-2'>
                                             <Combobox as='div' className='flex justify-center text-white text-lg'>
@@ -446,7 +446,7 @@ export default function Compare( { teamsList } ) {
                                                     ) : (
                                                         queryItems2.map((player) => (
                                                             <Combobox.Option as='div' key={player.id} value={player} >
-                                                                <div onClick={() => setPlayerSel2(player)} className='m-1 w-64 px-4 py-1 rounded-md ui-active:bg-gray-500 ui-active:cursor-pointer'>{player.firstName} {player.lastName}</div>
+                                                                <div onClick={() => setPlayerSel2(player)} className='m-1 w-64 px-4 py-1 rounded-md ui-active:bg-gray-500 ui-active:cursor-pointer'>{player.firstname} {player.lastname}</div>
                                                             </Combobox.Option>
                                                         ))
                                                     )}
@@ -486,14 +486,14 @@ export default function Compare( { teamsList } ) {
                                             ))}
                                     </Menu.Items>
                                 </Menu>
-                                <Image src={teamSel1.imgLinx} width="200" height="200" priority />
+                                <Image src={teamSel1.imglinx} width="200" height="200" priority />
                                 <div className='font-bold'>{teamSel1.school}</div>
                                 <div>{teamSel1.conference}</div>
                                 <div className='font-semibold'>{teamSel1.wins} - {teamSel1.losses}</div>
-                                <div>{teamSel1.expecWins}</div>
-                                <div className='font-semibold'>{teamSel1.recRank}</div>
-                                <div>{teamSel1.overOff}</div>
-                                <div className='font-semibold'>{teamSel1.overDeff}</div>
+                                <div>{teamSel1.expecwins}</div>
+                                <div className='font-semibold'>{teamSel1.recrank}</div>
+                                <div>{teamSel1.overoff}</div>
+                                <div className='font-semibold'>{teamSel1.overdeff}</div>
 
                             </div>
                             <div className='flex flex-col items-center'>
@@ -521,14 +521,14 @@ export default function Compare( { teamsList } ) {
                                             ))}
                                     </Menu.Items>
                                 </Menu>
-                                <Image src={teamSel2.imgLinx} width="200" height="200" priority />
+                                <Image src={teamSel2.imglinx} width="200" height="200" priority />
                                 <div className='font-bold'>{teamSel2.school}</div>
                                 <div>{teamSel2.conference}</div>
                                 <div className='font-semibold'>{teamSel2.wins} - {teamSel1.losses}</div>
-                                <div>{teamSel2.expecWins}</div>
-                                <div className='font-semibold'>{teamSel2.recRank}</div>
-                                <div>{teamSel2.overOff}</div>
-                                <div className='font-semibold'>{teamSel2.overDeff}</div>
+                                <div>{teamSel2.expecwins}</div>
+                                <div className='font-semibold'>{teamSel2.recrank}</div>
+                                <div>{teamSel2.overoff}</div>
+                                <div className='font-semibold'>{teamSel2.overdeff}</div>
                             </div>
                         </div>
                     )}
